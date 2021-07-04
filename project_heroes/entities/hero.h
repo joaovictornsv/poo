@@ -33,14 +33,14 @@ class Hero:HeroProtocol {
 class Warrior:public Hero {
   public:
     Warrior(string _name, Weapon _weapon):Hero(_name, _weapon) {
-      skill = "Blades";
+      skill = "Area damage";
     };
 };
 
-class Mage:public Hero {
+class Knight:public Hero {
   public:
-    Mage(string _name, Weapon _weapon):Hero(_name, _weapon) {
-      skill = "Fire Magics";
+    Knight(string _name, Weapon _weapon):Hero(_name, _weapon) {
+      skill = "Blades";
     };
 };
 

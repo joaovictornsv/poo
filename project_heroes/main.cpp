@@ -7,15 +7,16 @@ using namespace std;
 
 int main() {
   Factory factory = Factory();
-  Axe machadinho = factory.createIronWeapon<Axe>();
-  Sword espadinha = factory.createDiamondWeapon<Sword>();
+  Axe stormbreaker = factory.createIronWeapon<Axe>();
+  Sword darkSword = factory.createDiamondWeapon<Sword>();
 
 
-  Warrior bivar = Warrior("Bivar", machadinho);
-  Mage vini = Mage("Vini", espadinha);
+  Warrior thor = Warrior("Thor", stormbreaker);
+  Knight batman = Knight("Bruce", darkSword);
 
-  bivar.info();
-  vini.info();
+  thor.info();
+  cout << endl;
+  batman.info();
 
 
   return 0;
