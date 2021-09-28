@@ -4,6 +4,7 @@
 #include "../Pessoa/Pessoa.h"
 
 #include "Conta.h"
+#include "../../exceptions/SaldoInsuficiente.h"
 
 class ContaCorrente: public Conta
 {
@@ -13,51 +14,72 @@ public:
 
   // Depósito
   virtual void operator<<(double valor) {
-    if (totalTransacoes == 10) {
-      std::cout << "Impossível realizar operação. Limite de transacoes atingido" << std::endl;
-    }
-    else {
-      saldo += valor;
-
-      Transacao transacao;
-      transacao.valor = valor;
-      transacao.descricao = "Deposito";
-
-      time_t now = time(0);
-
-      std::string date_time = ctime(&now);
-
-      transacao.data = date_time;
-      listaDeTransacoes[totalTransacoes] = transacao;
-      totalTransacoes += 1;
-
-      std::cout << "Deposito de R$" << valor << " realizado." << std::endl;
-    }
-  }
-
-  // Retirada
-  virtual void operator>>(double valor) {
-    if (totalTransacoes == 10) {
-      std::cout << "Impossível realizar operação. Limite de transacoes atingido" << std::endl;
-      return;
-    }
-
-    saldo -= valor;
+    saldo += valor;
 
     Transacao transacao;
-
     transacao.valor = valor;
-    transacao.descricao = "Saque";
+    transacao.descricao = "Deposito";
 
     time_t now = time(0);
 
     std::string date_time = ctime(&now);
 
     transacao.data = date_time;
-    listaDeTransacoes[totalTransacoes] = transacao;
-    totalTransacoes += 1;
+    listaDeTransacoes.push_back(transacao);
 
-    std::cout << "Saque de R$" << valor << " realizado." << std::endl;
+    std::cout << "Deposito de R$" << valor << " realizado." << std::endl;
+  }
+
+  // Retirada
+  virtual void operator>>(double valor) {
+    try {
+      if ((saldo - valor) < 0) throw SaldoInsuficiente();
+
+      saldo -= valor;
+
+      Transacao transacao;
+
+      transacao.valor = valor;
+      transacao.descricao = "Saque";
+
+      time_t now = time(0);
+
+      std::string date_time = ctime(&now);
+
+      transacao.data = date_time;
+      listaDeTransacoes.push_back(transacao);
+
+      std::cout << "Saque de R$" << valor << " realizado." << std::endl;
+    } catch(std::runtime_error &e) {
+      std::cerr << e.what() << std::endl;
+    }
+  }
+
+  // Transferencia
+  virtual void transferir(double valor, Conta* conta) {
+    try {
+      if ((saldo - valor) < 0) throw SaldoInsuficiente();
+
+      *conta << valor;
+      *this >> valor;
+
+      Transacao transacao;
+
+      transacao.valor = valor;
+      transacao.descricao = "Transferencia";
+      transacao.contaDestino = conta->numeroConta;
+
+      time_t now = time(0);
+      std::string date_time = ctime(&now);
+
+      transacao.data = date_time;
+      listaDeTransacoes.push_back(transacao);
+
+      std::cout << "Transferencia de R$" << valor << " realizado para a conta " << conta->numeroConta << std::endl;
+
+    } catch(std::runtime_error &e) {
+      std::cerr << e.what() << std::endl;
+    }
   }
 
   virtual void extrato() {
@@ -67,11 +89,16 @@ public:
     std::cout << "Nome do cliente: " << correntista->getNome() << std::endl;
     std::cout << "Saldo: " << saldo << std::endl;
     std::cout << "---------------- Transacoes ----------------" << std::endl;
-    for (int i = 0; i < totalTransacoes; i++) {
+
+    int limite = listaDeTransacoes.size() <= 30 ? listaDeTransacoes.size() : 30;
+    for (int i = 0; i < limite; i++) {
       std::cout << "Num.Transacao: " << i << std::endl;
       std::cout << "Descricao: " << listaDeTransacoes[i].descricao << std::endl;
       std::cout << "Valor: " << listaDeTransacoes[i].valor << std::endl;
       std::cout << "Data: " << listaDeTransacoes[i].data;
+      if (listaDeTransacoes[i].descricao == "Transferencia") {
+        std::cout << "Conta destino: " << listaDeTransacoes[i].contaDestino;
+      }
       std::cout << "--------------------------------------------" << std::endl;
     }
 

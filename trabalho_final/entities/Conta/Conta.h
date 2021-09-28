@@ -4,6 +4,9 @@
 #include <ctime>
 #include "../Pessoa/Pessoa.h"
 
+#include <vector>
+using std::vector;
+
 typedef struct {
   std::string data;
   double valor;
@@ -29,14 +32,14 @@ public:
   virtual void extrato() = 0;
 
   // Transferência
-  virtual void transferir() = 0;
+  virtual void transferir(double valor, Conta* conta) = 0;
 
+  std::string numeroConta;
+  
 protected:
   Pessoa* correntista;
-  std::string numeroConta;
   double saldo;
-  Transacao listaDeTransacoes[10];
-  int totalTransacoes = 0;
+  vector<Transacao> listaDeTransacoes;
 };
 
 #endif

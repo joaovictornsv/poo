@@ -19,8 +19,8 @@ public:
   //   std::cout << "CPF: " << cpf << std::endl;
   // };
 
-  std::string getCpf() { return cpf; }
-  std::string getCnpj() { return cnpj; }
+  virtual std::string getCpf() { return cpf; }
+  virtual std::string getCnpj() { return cnpj; }
 
 
 protected:
