@@ -7,10 +7,8 @@ class Pessoa
 {
 public:
   Pessoa(
-    std::string _nome,
-    std::string _endereco,
-    std::string _email
-  ): nome(_nome), endereco(_endereco), email(_email) {}
+    std::string _nome
+  ): nome(_nome) {}
 
 
   virtual void exibirDados() = 0;
@@ -21,8 +19,6 @@ public:
 
 protected:
   std::string nome;
-  std::string endereco;
-  std::string email;
 };
 
 #endif
