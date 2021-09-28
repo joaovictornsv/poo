@@ -20,11 +20,11 @@ public:
     saldo = _saldo;
   }
 
-  // Sobrecarregar operador <<
-  virtual void deposito(double valor) = 0;
+  // Depósito
+  virtual void operator<<(double valor) = 0;
 
-  // Sobrecarregar operador >>
-  virtual void retirada(double valor) = 0;
+  // Retirada
+  virtual void operator>>(double valor) = 0;
   
   virtual void extrato() = 0;
 

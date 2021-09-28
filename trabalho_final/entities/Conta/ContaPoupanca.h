@@ -1,18 +1,20 @@
 #ifndef CONTA_POUPANCA_H
 #define CONTA_POUPANCA_H
 #include <iostream>
+#include "../Pessoa/Pessoa.h"
 
 #include "Conta.h"
 
 class ContaPoupanca: public Conta
 {
 public:
-  ContaPoupanca(std::string _nomeCorrentista, std::string _numeroConta, double _saldo, std::string _aniversarioConta)
-  : Conta(_nomeCorrentista, _numeroConta, _saldo) {
+  ContaPoupanca(Pessoa* _correntista, std::string _numeroConta, double _saldo, std::string _aniversarioConta)
+  : Conta(_correntista, _numeroConta, _saldo) {
     aniversarioConta = _aniversarioConta;
   }
 
-  virtual void deposito(double valor) {
+  // Deposito
+  virtual void operator<<(double valor) {
     if (totalTransacoes == 10) {
       std::cout << "Impossível realizar operação. Limite de transacoes atingido" << std::endl;
     }
@@ -35,7 +37,8 @@ public:
     }
   }
 
-  virtual void retirada(double valor) {
+  // Retirada
+  virtual void operator>>(double valor) {
     if (totalTransacoes == 10) {
       std::cout << "Impossível realizar operação. Limite de transacoes atingido" << std::endl;
       return;
@@ -63,7 +66,7 @@ public:
     std::cout << "============================================" << std::endl;
     std::cout << "Tipo de conta: Corrente com Limite" << std::endl;
     std::cout << "Numero da conta: " << numeroConta << std::endl;
-    std::cout << "Nome do cliente: " << nomeCorrentista << std::endl;
+    std::cout << "Nome do cliente: " << correntista->getNome() << std::endl;
     std::cout << "Saldo: " << saldo << std::endl;
     std::cout << "Aniversario da conta: " << aniversarioConta << std::endl;
     std::cout << "---------------- Transacoes ----------------" << std::endl;
