@@ -11,7 +11,7 @@ public:
   ): nome(_nome) {}
 
 
-  virtual void exibirDados() = 0;
+  // virtual void exibirDados() = 0;
   virtual std::string getCpf() = 0;
   virtual std::string getCnpj() = 0;
 

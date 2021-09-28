@@ -63,7 +63,7 @@ public:
       if ((saldo - valor) < (limite * -1)) throw ExcedeLimite();
 
       *conta << valor;
-      *this >> valor;
+      saldo -= valor;
 
       Transacao transacao;
 
@@ -99,7 +99,7 @@ public:
       std::cout << "Valor: " << listaDeTransacoes[i].valor << std::endl;
       std::cout << "Data: " << listaDeTransacoes[i].data;
       if (listaDeTransacoes[i].descricao == "Transferencia") {
-        std::cout << "Conta destino: " << listaDeTransacoes[i].contaDestino;
+        std::cout << "Conta destino: " << listaDeTransacoes[i].contaDestino << std::endl;
       }
       std::cout << "--------------------------------------------" << std::endl;
     }
