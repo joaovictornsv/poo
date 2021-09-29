@@ -34,6 +34,8 @@ public:
   // Transferência
   virtual void transferir(double valor, Conta* conta) = 0;
 
+  double getSaldo() { return saldo; };
+
   std::string numeroConta;
   
 protected:

@@ -34,54 +34,45 @@ public:
 
   // Retirada
   virtual void operator>>(double valor) {
-    try {
-      if ((saldo - valor) < (limite * -1)) throw ExcedeLimite();
+    if ((saldo - valor) < (limite * -1)) throw ExcedeLimite();
 
-      saldo -= valor;
+    saldo -= valor;
 
-      Transacao transacao;
+    Transacao transacao;
 
-      transacao.valor = valor;
-      transacao.descricao = "Saque";
+    transacao.valor = valor;
+    transacao.descricao = "Saque";
 
-      time_t now = time(0);
+    time_t now = time(0);
 
-      std::string date_time = ctime(&now);
+    std::string date_time = ctime(&now);
 
-      transacao.data = date_time;
-      listaDeTransacoes.push_back(transacao);
+    transacao.data = date_time;
+    listaDeTransacoes.push_back(transacao);
 
-      std::cout << "Saque de R$" << valor << " realizado." << std::endl;
-    } catch(std::runtime_error &e) {
-      std::cerr << e.what() << std::endl;
-    }  
+    std::cout << "Saque de R$" << valor << " realizado." << std::endl;
   }
 
     // Transferencia
   virtual void transferir(double valor, Conta* conta) {
-    try {
-      if ((saldo - valor) < (limite * -1)) throw ExcedeLimite();
+    if ((saldo - valor) < (limite * -1)) throw ExcedeLimite();
 
-      *conta << valor;
-      saldo -= valor;
+    *conta << valor;
+    saldo -= valor;
 
-      Transacao transacao;
+    Transacao transacao;
 
-      transacao.valor = valor;
-      transacao.descricao = "Transferencia";
-      transacao.contaDestino = conta->numeroConta;
+    transacao.valor = valor;
+    transacao.descricao = "Transferencia";
+    transacao.contaDestino = conta->numeroConta;
 
-      time_t now = time(0);
-      std::string date_time = ctime(&now);
+    time_t now = time(0);
+    std::string date_time = ctime(&now);
 
-      transacao.data = date_time;
-      listaDeTransacoes.push_back(transacao);
+    transacao.data = date_time;
+    listaDeTransacoes.push_back(transacao);
 
-      std::cout << "Transferencia de R$" << valor << " realizado para a conta " << conta->numeroConta << std::endl;
-
-    } catch(std::runtime_error &e) {
-      std::cerr << e.what() << std::endl;
-    }
+    std::cout << "Transferencia de R$" << valor << " realizado para a conta " << conta->numeroConta << std::endl;
   }
 
   virtual void extrato() {
