@@ -4,15 +4,10 @@
 #include <ctime>
 #include "../Pessoa/Pessoa.h"
 
+#include "../Transacao/Transacao.h"
+
 #include <vector>
 using std::vector;
-
-typedef struct {
-  std::string data;
-  double valor;
-  std::string descricao;
-  std::string contaDestino;
-} Transacao;
 
 class Conta
 {
@@ -36,10 +31,14 @@ public:
 
   double getSaldo() { return saldo; };
 
+  virtual void info() = 0;
+
+  virtual void basicInfo() = 0;
+
   std::string numeroConta;
+  Pessoa* correntista;
   
 protected:
-  Pessoa* correntista;
   double saldo;
   vector<Transacao> listaDeTransacoes;
 };

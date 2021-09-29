@@ -17,7 +17,6 @@ public:
 
   std::string getNome() { return this->nome; }
 
-protected:
   std::string nome;
 };
 

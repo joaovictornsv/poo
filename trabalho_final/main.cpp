@@ -9,6 +9,8 @@
 #include "./entities/Conta/ContaCorrenteLimite.h"
 #include "./entities/Conta/ContaPoupanca.h"
 
+#include "./entities/Transacao/Transacao.h"
+
 #include "./exceptions/ExcedeLimite.h"
 #include "./exceptions/SaldoInsuficiente.h"
 

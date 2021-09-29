@@ -73,6 +73,21 @@ public:
     std::cout << "Transferencia de R$" << valor << " realizado para a conta " << conta->numeroConta << std::endl;
   }
 
+  void info() {
+    std::cout << "============================================" << std::endl;
+    std::cout << "Tipo de conta: Corrente Comum" << std::endl;
+    std::cout << "Numero da conta: " << numeroConta << std::endl;
+    std::cout << "Nome do cliente: " << correntista->getNome() << std::endl;
+    std::cout << "Saldo: " << saldo << std::endl;
+    std::cout << "============================================" << std::endl;
+  }
+
+  void basicInfo() {
+    std::cout << "Tipo de conta: Corrente Comum" << std::endl;
+    std::cout << "Numero da conta: " << numeroConta << std::endl;
+    std::cout << "Nome do cliente: " << correntista->getNome() << std::endl;
+  }
+
   virtual void extrato() {
     std::cout << "============================================" << std::endl;
     std::cout << "Tipo de conta: Corrente Comum" << std::endl;
