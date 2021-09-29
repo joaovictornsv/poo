@@ -64,7 +64,7 @@ public:
 
     transacao.valor = valor;
     transacao.descricao = "Transferencia";
-    transacao.contaDestino = conta->numeroConta;
+    transacao.contaDestino = conta->getNumeroConta();
 
     time_t now = time(0);
     std::string date_time = ctime(&now);
@@ -72,7 +72,7 @@ public:
     transacao.data = date_time;
     listaDeTransacoes.push_back(transacao);
 
-    std::cout << "Transferencia de R$" << valor << " realizado para a conta " << conta->numeroConta << std::endl;
+    std::cout << "Transferencia de R$" << valor << " realizado para a conta " << conta->getNumeroConta() << std::endl;
   }
 
   void info() {
@@ -83,6 +83,12 @@ public:
     std::cout << "Saldo: " << saldo << std::endl;
     std::cout << "Limite: " << limite << std::endl;
     std::cout << "============================================" << std::endl;
+  }
+
+  void basicInfo() {
+    std::cout << "Tipo de conta: Corrente com Limite" << std::endl;
+    std::cout << "Numero da conta: " << numeroConta << std::endl;
+    std::cout << "Nome do cliente: " << correntista->getNome() << std::endl;
   }
 
   virtual void extrato() {

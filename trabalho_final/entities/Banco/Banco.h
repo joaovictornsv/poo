@@ -25,7 +25,7 @@ public:
     std::cout << "============================================" << std::endl;
     bool haContas = false;
     for(int i=0; i < listaContas.size(); i++) {
-      if (listaContas[i].correntista->getNome() == nome) {
+      if (listaContas[i].getCorrentista()->getNome() == nome) {
         listaContas[i].basicInfo();
         haContas = true;
         std::cout << "--------------------------------------------" << std::endl;
@@ -45,7 +45,7 @@ public:
   }
 
   void cadastrarConta(Conta& c) {
-    if (contaExiste(c.numeroConta) == false) throw ContaJaExiste();
+    if (contaExiste(c.getNumeroConta()) == true) throw ContaJaExiste();
 
     listaContas.push_back(c);
   }
@@ -55,7 +55,7 @@ public:
 
     int index = 0;
     for(int i=0; i < listaContas.size(); i++) {
-      if (listaContas[i].numeroConta == numeroConta) {
+      if (listaContas[i].getNumeroConta() == numeroConta) {
         index = i;
         break;
       }
@@ -64,8 +64,17 @@ public:
     listaContas[index].info();
   }
 
-  void atualizarConta(std::string numeroConta) {
+  void atualizarConta(std::string numeroConta, std::string email) {
     if (contaExiste(numeroConta) == false) throw ContaNaoExiste();
+    if (correntistaExiste(email) == false) throw CorrentistaNaoExiste();
+
+    for(int i=0; i < listaCorrentistas.size(); i++) {
+      if (listaCorrentistas[i].getEmail() == email) {
+        listaCorrentistas[i].setEmail(email);
+        break;
+      }
+    }
+
   }
 
   void removerConta(std::string numeroConta) {
@@ -73,7 +82,7 @@ public:
 
     int index = 0;
     for(int i=0; i < listaContas.size(); i++) {
-      if (listaContas[i].numeroConta == numeroConta) {
+      if (listaContas[i].getNumeroConta() == numeroConta) {
         index = i;
         break;
       }
@@ -85,7 +94,7 @@ public:
   bool contaExiste(std::string numeroConta) {
     bool contaExiste = false;
     for(int i=0; i < listaContas.size(); i++) {
-      if (listaContas[i].numeroConta == numeroConta) {
+      if (listaContas[i].getNumeroConta() == numeroConta) {
         contaExiste = true;
         break;
       }
@@ -93,10 +102,10 @@ public:
     return contaExiste;
   }
 
-  bool correntistaExiste(std::string nome) {
+  bool correntistaExiste(std::string email) {
     bool correntistaExiste = false;
     for(int i=0; i < listaCorrentistas.size(); i++) {
-      if (listaCorrentistas[i].nome == nome) {
+      if (listaCorrentistas[i].getEmail() == email) {
         correntistaExiste = true;
         break;
       }

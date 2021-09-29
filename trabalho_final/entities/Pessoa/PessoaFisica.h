@@ -9,8 +9,9 @@ class PessoaFisica: public Pessoa
 public:
   PessoaFisica(
     std::string _nome,
+    std::string _email,
     std::string _cpf
-  ): Pessoa(_nome),
+  ): Pessoa(_nome, _email),
     cpf(_cpf) {}
 
   // void exibirDados() {

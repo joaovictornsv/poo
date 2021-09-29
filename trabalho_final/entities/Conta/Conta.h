@@ -35,11 +35,13 @@ public:
 
   virtual void basicInfo() = 0;
 
-  std::string numeroConta;
-  Pessoa* correntista;
+  std::string getNumeroConta() { return numeroConta; };
+  Pessoa* getCorrentista() { return correntista; };
   
 protected:
   double saldo;
+  std::string numeroConta;
+  Pessoa* correntista;
   vector<Transacao> listaDeTransacoes;
 };
 
