@@ -1,3 +1,6 @@
-1;João da Silva;421412;40.21
-2;Pedro da Silva;321;403.21;1000
-3;José da Silva;421;904.02;10/20/2021
+P;PF;João da Silva;joao@email.com;123
+P;PJ;Pedro da Silva;pedro@email.com;456
+P;PJ;José da Silva;jose@email.com;789
+C;CC;João da Silva;421412;40.21
+C;CCL;Pedro da Silva;321;403.21;1000
+C;CP;José da Silva;421;904.02;10/20/2021
