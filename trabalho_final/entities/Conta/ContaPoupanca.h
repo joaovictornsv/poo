@@ -118,6 +118,16 @@ public:
     std::cout << "============================================" << std::endl;
   };
 
+  virtual void registrar() {
+    std::fstream file("./database/contas.txt", std::ios::out | std::ios::in | std::ios::app);
+
+    std::string delimiter = ";";
+    std::string data = ID_C+delimiter+ID_CCL+delimiter+getCorrentista()->getNome()+delimiter+getNumeroConta()+delimiter+std::to_string(getSaldo())+
+    delimiter+aniversarioConta;
+
+    file << data << std::endl;
+  }
+
 private:
   std::string aniversarioConta;
 };

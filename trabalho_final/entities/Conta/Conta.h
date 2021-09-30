@@ -8,6 +8,7 @@
 
 #include <vector>
 using std::vector;
+#include <fstream>
 
 class Conta
 {
@@ -36,6 +37,8 @@ public:
   virtual void basicInfo() = 0;
 
   virtual std::string getTipoConta() = 0;
+
+  virtual void registrar() = 0;
 
   std::string getNumeroConta() { return numeroConta; };
   Pessoa* getCorrentista() { return correntista; };

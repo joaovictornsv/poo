@@ -6,6 +6,9 @@
 #include "Conta.h"
 #include "../../exceptions/SaldoInsuficiente.h"
 
+#include "../../constants/identifiers.h"
+#include <string.h>
+
 class ContaCorrente: public Conta
 {
 public:
@@ -114,6 +117,15 @@ public:
 
     std::cout << "============================================" << std::endl;
   };
+
+  virtual void registrar() {
+    std::fstream file("./database/contas.txt", std::ios::out | std::ios::in | std::ios::app);
+
+    std::string delimiter = ";";
+    std::string data = ID_C+delimiter+ID_CC+delimiter+getCorrentista()->getNome()+delimiter+getNumeroConta()+delimiter+std::to_string(getSaldo());
+
+    file << data << std::endl;
+  }
 };
 
 #endif
