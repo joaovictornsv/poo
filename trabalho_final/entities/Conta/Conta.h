@@ -39,6 +39,20 @@ public:
 
   std::string getNumeroConta() { return numeroConta; };
   Pessoa* getCorrentista() { return correntista; };
+
+  void adicionarTransacao(
+    std::string data,
+    double valor,
+    std::string descricao,
+    std::string contaDestino
+  ) {
+      Transacao transacao;
+      transacao.data = data;
+      transacao.valor = valor;
+      transacao.descricao = descricao;
+      transacao.contaDestino = contaDestino;
+      listaDeTransacoes.push_back(transacao);
+  }
   
 protected:
   double saldo;

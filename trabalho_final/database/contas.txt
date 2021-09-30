@@ -4,3 +4,5 @@ P;PJ;José da Silva;jose@email.com;789
 C;CC;João da Silva;421412;40.21
 C;CCL;Pedro da Silva;321;403.21;1000
 C;CP;José da Silva;421;904.02;10/20/2021
+T;421412;10/20/2021;190.90;Transferencia;421
+T;421412;12/20/2021;10.0;Deposito

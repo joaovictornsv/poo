@@ -24,6 +24,8 @@ int main() {
 
   banco.listarContas();
 
+  banco.consultarConta("421412");
+
   // PessoaFisica pf("Joao Victor", "joao@email.com", "706.083.0440-84");
   // PessoaJuridica pj("Joao Victor", "joao@email.com", "40.332.583/0001-72");
 

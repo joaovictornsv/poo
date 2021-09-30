@@ -108,7 +108,7 @@ public:
       std::cout << "Num.Transacao: " << i << std::endl;
       std::cout << "Descricao: " << listaDeTransacoes[i].descricao << std::endl;
       std::cout << "Valor: " << listaDeTransacoes[i].valor << std::endl;
-      std::cout << "Data: " << listaDeTransacoes[i].data;
+      std::cout << "Data: " << listaDeTransacoes[i].data << std::endl;
       if (listaDeTransacoes[i].descricao == "Transferencia") {
         std::cout << "Conta destino: " << listaDeTransacoes[i].contaDestino << std::endl;
       }

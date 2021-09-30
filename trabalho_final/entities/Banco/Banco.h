@@ -21,13 +21,17 @@ using std::vector;
 #define TIPO_CC "ContaCorrente"
 #define TIPO_CCL "ContaCorrenteLimite"
 #define TIPO_CP "ContaPoupanca"
+
 #define ID_C "C"
 #define ID_CC "CC"
 #define ID_CCL "CCL"
 #define ID_CP "CP"
+
 #define ID_P "P"
 #define ID_PF "PF"
 #define ID_PJ "PJ"
+
+#define ID_T "T"
 
 #include <fstream>
 
@@ -40,6 +44,7 @@ public:
     PessoaJuridica(_nome, _email, _cnpj) {
       carregarPessoas();
       carregarContas();
+      carregarTransacoes();
     };
 
   
@@ -105,7 +110,21 @@ public:
       }
     }
 
-    listaContas[index]->info();
+    listaContas[index]->extrato();
+  }
+
+  Conta* getConta(std::string numeroConta) {
+    if (contaExiste(numeroConta) == false) throw ContaNaoExiste();
+
+    int index = 0;
+    for(int i=0; i < listaContas.size(); i++) {
+      if (listaContas[i]->getNumeroConta() == numeroConta) {
+        index = i;
+        break;
+      }
+    }
+
+    return listaContas[index];
   }
 
   void atualizarConta(std::string numeroConta, std::string email) {
@@ -172,6 +191,55 @@ private:
   vector<Conta*> listaContas;
   std::string nomeDoBanco;
 
+  void carregarTransacoes() {
+    std::fstream file("./database/contas.txt", std::ios::out | std::ios::in);
+
+    std::string delimiter = ";";
+    std::string output;
+    while (std::getline (file, output)) {
+      std::string tipoDado;
+      std::string numeroConta;
+      std::string data;
+      double valor;
+      std::string descricao;
+      std::string contaDestino;
+
+      int end = output.find(delimiter);
+      tipoDado = output.substr(0, end);
+      output.erase(0, end+1);
+
+      if (tipoDado == ID_T) {
+        int end = output.find(delimiter);
+        numeroConta = output.substr(0, end);
+        output.erase(0, end+1);
+
+        Conta* conta = getConta(numeroConta);
+
+        end = output.find(delimiter);
+        data = output.substr(0, end);
+        output.erase(0, end+1);
+
+        end = output.find(delimiter);
+        valor = std::stod(output.substr(0, end).c_str());
+        output.erase(0, end+1);
+
+        end = output.find(delimiter);
+        descricao = output.substr(0, end);
+        output.erase(0, end+1);
+
+
+        if (descricao == "Transferencia") {
+          end = output.find(delimiter);
+          contaDestino = output.substr(0, end);
+          output.erase(0, end+1);
+          conta->adicionarTransacao(data, valor, descricao, contaDestino);
+        } else {
+          conta->adicionarTransacao(data, valor, descricao, "0");
+        }
+      }
+    }
+  }
+
   void carregarPessoas() {
     std::fstream file("./database/contas.txt", std::ios::out | std::ios::in);
 
@@ -217,7 +285,6 @@ private:
         }
       }
     }
-    listarCorrentistas();
   }
 
   void carregarContas() {
