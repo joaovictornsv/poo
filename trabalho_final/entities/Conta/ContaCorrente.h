@@ -88,6 +88,10 @@ public:
     std::cout << "Nome do cliente: " << correntista->getNome() << std::endl;
   }
 
+  virtual std::string getTipoConta() {
+    return "ContaCorrente";
+  }
+
   virtual void extrato() {
     std::cout << "============================================" << std::endl;
     std::cout << "Tipo de conta: Corrente Comum" << std::endl;

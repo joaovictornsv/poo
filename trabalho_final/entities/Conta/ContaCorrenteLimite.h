@@ -75,6 +75,10 @@ public:
     std::cout << "Transferencia de R$" << valor << " realizado para a conta " << conta->getNumeroConta() << std::endl;
   }
 
+  virtual std::string getTipoConta() {
+    return "ContaCorrenteLimite";
+  }
+
   void info() {
     std::cout << "============================================" << std::endl;
     std::cout << "Tipo de conta: Corrente com Limite" << std::endl;

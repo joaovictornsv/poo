@@ -35,6 +35,8 @@ public:
 
   virtual void basicInfo() = 0;
 
+  virtual std::string getTipoConta() = 0;
+
   std::string getNumeroConta() { return numeroConta; };
   Pessoa* getCorrentista() { return correntista; };
   

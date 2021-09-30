@@ -14,6 +14,13 @@
 #include <vector>
 using std::vector;
 
+#define TIPO_CC "ContaCorrente"
+#define TIPO_CCL "ContaCorrenteLimite"
+#define TIPO_CP "ContaPoupanca"
+#define DIGITO_CC 1
+#define DIGITO_CCL 2
+#define DIGITO_CP 3
+
 class Banco: public PessoaJuridica
 {
 public:
@@ -46,6 +53,13 @@ public:
 
   void cadastrarConta(Conta& c) {
     if (contaExiste(c.getNumeroConta()) == true) throw ContaJaExiste();
+
+    int digito;
+    if(c.getTipoConta() == TIPO_CC) digito = DIGITO_CC;
+    if(c.getTipoConta() == TIPO_CCL) digito = DIGITO_CCL;
+    if(c.getTipoConta() == TIPO_CP) digito = DIGITO_CP;
+
+    
 
     listaContas.push_back(c);
   }

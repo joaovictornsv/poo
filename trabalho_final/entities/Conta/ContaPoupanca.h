@@ -74,6 +74,10 @@ public:
 
     std::cout << "Transferencia de R$" << valor << " realizado para a conta " << conta->getNumeroConta() << std::endl;
   }
+
+  virtual std::string getTipoConta() {
+    return "ContaPoupanca";
+  }
   
   void info() {
     std::cout << "============================================" << std::endl;
