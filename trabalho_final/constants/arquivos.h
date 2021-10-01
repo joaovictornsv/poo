@@ -1,2 +1,2 @@
-#define FILE_PATH "./database/contas.txt"
-#define TEMP_FILE_PATH "./database/contas_temp.txt"
+#define FILE_PATH "./database/dados.txt"
+#define TEMP_FILE_PATH "./database/dados_temp.txt"
