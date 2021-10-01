@@ -10,6 +10,10 @@
 using std::vector;
 #include <fstream>
 
+#include "../../constants/identificadores.h"
+#include "../../constants/arquivos.h"
+#include "../../constants/descricao_transacoes.h"
+
 class Conta
 {
 public:
@@ -36,9 +40,8 @@ public:
 
   virtual void basicInfo() = 0;
 
-  virtual std::string getTipoConta() = 0;
-
   virtual void registrar() = 0;
+  virtual std::string getLineFormat() = 0;
 
   std::string getNumeroConta() { return numeroConta; };
   Pessoa* getCorrentista() { return correntista; };

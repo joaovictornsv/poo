@@ -23,7 +23,15 @@ public:
   virtual std::string getCpf() { return cpf; }
   virtual std::string getCnpj() { return cnpj; }
 
+  virtual void registrar() {
+    std::fstream file(FILE_PATH, std::ios::out | std::ios::in | std::ios::app);
 
+    std::string delimiter = ";";
+    std::string data = ID_P+delimiter+ID_PF+delimiter+getNome()+delimiter+getEmail()+delimiter+cpf;
+
+    file << data << std::endl;
+  }
+  
 protected:
   std::string cpf;
   std::string cnpj = "Sem CNPJ";

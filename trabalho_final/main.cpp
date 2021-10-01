@@ -30,8 +30,8 @@ int main() {
   ContaCorrente cc(&pf, "123", 0);
 
   banco.cadastrarConta(&cc);
+  banco.removerConta("321");
   banco.listarContas();
-  banco.consultarConta("123");
 
   // ContaCorrenteLimite ccl(&pj, "432", 0, 100);
 

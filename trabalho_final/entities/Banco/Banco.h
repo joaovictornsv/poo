@@ -18,7 +18,8 @@
 #include <vector>
 using std::vector;
 
-#include "../../constants/identifiers.h"
+#include "../../constants/identificadores.h"
+#include "../../constants/arquivos.h"
 
 #include <fstream>
 
@@ -77,8 +78,10 @@ public:
     if (contaExiste(c->getNumeroConta()) == true) throw ContaJaExiste();
 
     c->registrar();
+    c->getCorrentista()->registrar();
 
     listaContas.push_back(c);
+    listaCorrentistas.push_back(c->getCorrentista());
   }
 
   void consultarConta(std::string numeroConta) {
@@ -124,6 +127,7 @@ public:
 
   void removerConta(std::string numeroConta) {
     if (contaExiste(numeroConta) == false) throw ContaNaoExiste();
+    Conta* conta = getConta(numeroConta);
 
     int index = 0;
     for(int i=0; i < listaContas.size(); i++) {
@@ -133,6 +137,20 @@ public:
       }
     }
 
+    std::ifstream file(FILE_PATH);
+    std::ofstream tempFile(TEMP_FILE_PATH);
+
+    std::string output;
+    while (std::getline (file, output)) {
+      if (output != conta->getLineFormat()) {
+        tempFile << output << std::endl;
+      }
+    }
+
+    file.close();
+    tempFile.close();
+    remove(FILE_PATH);
+    rename(TEMP_FILE_PATH, FILE_PATH);
     listaContas.erase(listaContas.begin() + index);
   }
 
@@ -174,7 +192,7 @@ private:
   std::string nomeDoBanco;
 
   void carregarTransacoes() {
-    std::fstream file("./database/contas.txt", std::ios::out | std::ios::in);
+    std::fstream file(FILE_PATH, std::ios::out | std::ios::in);
 
     std::string delimiter = ";";
     std::string output;
@@ -223,7 +241,7 @@ private:
   }
 
   void carregarPessoas() {
-    std::fstream file("./database/contas.txt", std::ios::out | std::ios::in);
+    std::fstream file(FILE_PATH, std::ios::out | std::ios::in);
 
     std::string delimiter = ";";
     std::string output;
@@ -270,7 +288,7 @@ private:
   }
 
   void carregarContas() {
-    std::fstream file("./database/contas.txt", std::ios::out | std::ios::in);
+    std::fstream file(FILE_PATH, std::ios::out | std::ios::in);
 
     std::string delimiter = ";";
     std::string output;

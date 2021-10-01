@@ -21,7 +21,7 @@ public:
 
     Transacao transacao;
     transacao.valor = valor;
-    transacao.descricao = "Deposito";
+    transacao.descricao = DEPOSITO;
 
     time_t now = time(0);
 
@@ -42,7 +42,7 @@ public:
     Transacao transacao;
 
     transacao.valor = valor;
-    transacao.descricao = "Saque";
+    transacao.descricao = SAQUE;
 
     time_t now = time(0);
     std::string date_time = ctime(&now);
@@ -63,7 +63,7 @@ public:
     Transacao transacao;
 
     transacao.valor = valor;
-    transacao.descricao = "Transferencia";
+    transacao.descricao = TRANSFERENCIA;
     transacao.contaDestino = conta->getNumeroConta();
 
     time_t now = time(0);
@@ -74,11 +74,7 @@ public:
 
     std::cout << "Transferencia de R$" << valor << " realizado para a conta " << conta->getNumeroConta() << std::endl;
   }
-
-  virtual std::string getTipoConta() {
-    return "ContaPoupanca";
-  }
-  
+ 
   void info() {
     std::cout << "============================================" << std::endl;
     std::cout << "Tipo de conta: Poupanca" << std::endl;
@@ -109,7 +105,7 @@ public:
       std::cout << "Descricao: " << listaDeTransacoes[i].descricao << std::endl;
       std::cout << "Valor: " << listaDeTransacoes[i].valor << std::endl;
       std::cout << "Data: " << listaDeTransacoes[i].data << std::endl;
-      if (listaDeTransacoes[i].descricao == "Transferencia") {
+      if (listaDeTransacoes[i].descricao == TRANSFERENCIA) {
         std::cout << "Conta destino: " << listaDeTransacoes[i].contaDestino << std::endl;
       }
       std::cout << "--------------------------------------------" << std::endl;
@@ -119,13 +115,20 @@ public:
   };
 
   virtual void registrar() {
-    std::fstream file("./database/contas.txt", std::ios::out | std::ios::in | std::ios::app);
+    std::fstream file(FILE_PATH, std::ios::out | std::ios::in | std::ios::app);
 
     std::string delimiter = ";";
     std::string data = ID_C+delimiter+ID_CCL+delimiter+getCorrentista()->getNome()+delimiter+getNumeroConta()+delimiter+std::to_string(getSaldo())+
     delimiter+aniversarioConta;
 
     file << data << std::endl;
+  }
+
+  virtual std::string getLineFormat() {
+    std::string delimiter = ";";
+    std::string data = ID_C+delimiter+ID_CCL+delimiter+getCorrentista()->getNome()+delimiter+getNumeroConta()+delimiter+std::to_string(getSaldo())+
+    delimiter+aniversarioConta;
+    return data;
   }
 
 private:
