@@ -23,7 +23,7 @@ void menuVisaoGerente() {
   std::cout << "[2] Atualizar conta" << std::endl;
   std::cout << "[3] Fechar conta" << std::endl;
   std::cout << "[4] Listar contas" << std::endl;
-  std::cout << "[4] Listar contas de cliente" << std::endl;
+  std::cout << "[5] Listar contas de cliente" << std::endl;
   std::cout << "====================================" << std::endl;
   std::cout << "Sua opcao: ";
 }
@@ -43,6 +43,23 @@ void menuCriarCliente() {
   std::cout << "------------------------------------" << std::endl;
   std::cout << "       Cadastrar novo cliente       " << std::endl;
   std::cout << "------------------------------------" << std::endl;
+  std::cout << "Escolha que tipo de cliente deseja ser:" << std::endl;
+  std::cout << "[0] Pessoa Fisica" << std::endl;
+  std::cout << "[1] Pessoa Juridica" << std::endl;
+  std::cout << "------------------------------------" << std::endl;
+  std::cout << "Sua opcao: ";
+}
+
+void menuTipoDeConta() {
+  std::cout << "------------------------------------" << std::endl;
+  std::cout << "            Tipo de conta           " << std::endl;
+  std::cout << "------------------------------------" << std::endl;
+  std::cout << "Escolha que tipo de conta deseja abrir:" << std::endl;
+  std::cout << "[0] Conta Corrente Comum" << std::endl;
+  std::cout << "[1] Conta Corrente como Limite" << std::endl;
+  std::cout << "[3] Conta Poupanca" << std::endl;
+  std::cout << "------------------------------------" << std::endl;
+  std::cout << "Sua opcao: ";
 }
 
 void menuUsarCliente() {
