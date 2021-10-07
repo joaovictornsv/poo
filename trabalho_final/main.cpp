@@ -33,9 +33,11 @@ int main() {
   // banco.removerConta("321");
   // banco.listarContas();
 
-  banco.atualizarConta("123", "minhnovachave");
+  Conta* conta=banco.getConta("123");
 
   // *(conta) << 100;
+  banco.atualizarConta("123", "chavemelhor");
+
   // *(conta) >> 50;
 
   // ContaCorrenteLimite ccl(&pj, "432", 0, 100);

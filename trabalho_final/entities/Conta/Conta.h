@@ -70,7 +70,11 @@ public:
 
       Transacao transacao = listaDeTransacoes[i];
       std::string data = transacao.data;
-      data.replace(data.size()-2, 1, "");
+      for (int c = 0; c < data.length(); c++) {
+        if (data[c] == '\n') {
+          data.replace(data.find("\n"), 1, "");
+        }
+      }
       double valor = transacao.valor;
       std::string descricao = transacao.descricao;
       std::string contaDestino;

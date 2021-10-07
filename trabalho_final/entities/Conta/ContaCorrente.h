@@ -33,7 +33,7 @@ public:
     transacao.data = date_time;
     listaDeTransacoes.push_back(transacao);
 
-    // registrarTransacao(transacao);
+    registrarTransacao(transacao);
     std::cout << "Deposito de R$" << valor << " realizado." << std::endl;
   }
 

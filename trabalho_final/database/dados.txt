@@ -3,7 +3,6 @@ P;PJ;Pedro da Silva;pedro@email.com;456
 P;PJ;José da Silva;jose@email.com;789
 P;PF;Joao Victor;joao@email.com;706.083.0440-84
 C;CC;João da Silva;421412;40.210000;joao@email.com
-C;CCL;José da Silva;421;904.020000;jose@email.com;10/20/2021
-C;CC;Joao Victor;123;0.000000;minhnovachave
-T;421412;10/20/201;190.900000;Transferencia;421
-T;421412;12/20/201;10.000000;Deposito
+C;CCL;José da Silva;421;904.020000;jose@email.com;10.000000
+C;CC;Joao Victor;123;100.000000;chavemelhor
+T;123;Thu Oct  7 07:55:51 2021;100.000000;Deposito
