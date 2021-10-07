@@ -32,6 +32,12 @@ public:
     file << data << std::endl;
   }
 
+  virtual std::string getLineFormat() {
+    std::string delimiter = ";";
+    std::string data = ID_P+delimiter+ID_PJ+delimiter+getNome()+delimiter+getEmail()+delimiter+cnpj;
+    return data;
+  }
+
 protected:
   std::string cpf = "Sem CPF";
   std::string cnpj;

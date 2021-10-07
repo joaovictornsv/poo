@@ -17,9 +17,10 @@ using std::vector;
 class Conta
 {
 public:
-  Conta(Pessoa* _correntista, std::string _numeroConta, double _saldo) {
+  Conta(Pessoa* _correntista, std::string _numeroConta, double _saldo, std::string _chavePix) {
     correntista = _correntista;
     numeroConta = _numeroConta;
+    chavePix = _chavePix;
     saldo = _saldo;
   }
 
@@ -41,10 +42,14 @@ public:
   virtual void basicInfo() = 0;
 
   virtual void registrar() = 0;
+  virtual void deletar() = 0;
   virtual std::string getLineFormat() = 0;
 
   std::string getNumeroConta() { return numeroConta; };
   Pessoa* getCorrentista() { return correntista; };
+
+  void setChavePix(std::string novaChave) { chavePix = novaChave; };
+  std::string getChavePix() { return chavePix; };
 
   void adicionarTransacao(
     std::string data,
@@ -59,10 +64,60 @@ public:
       transacao.contaDestino = contaDestino;
       listaDeTransacoes.push_back(transacao);
   }
+
+  void registrarTransacoes(std::ofstream* file) {
+    for (int i = 0; i < listaDeTransacoes.size(); i++) {
+
+      Transacao transacao = listaDeTransacoes[i];
+      std::string data = transacao.data;
+      data.replace(data.size()-2, 1, "");
+      double valor = transacao.valor;
+      std::string descricao = transacao.descricao;
+      std::string contaDestino;
+
+      std::string registro;
+      if (descricao == TRANSFERENCIA) {
+        contaDestino = transacao.contaDestino;
+        std::string delimiter = ";";
+        registro = ID_T+delimiter+numeroConta+delimiter+data+delimiter+std::to_string(valor)+delimiter+descricao+delimiter+contaDestino;
+      } else {
+        std::string delimiter = ";";
+        registro = ID_T+delimiter+numeroConta+delimiter+data+delimiter+std::to_string(valor)+delimiter+descricao;
+      }
+        
+      (*file) << registro << std::endl;
+    }
+    // (*file).close();
+  }
+
+  void registrarTransacao(Transacao transacao) {
+    std::fstream file(FILE_PATH, std::ios::out | std::ios::in | std::ios::app);
+
+    std::string data = transacao.data;
+    data.replace(data.find("\n"), 1, "");
+    double valor = transacao.valor;
+    std::string descricao = transacao.descricao;
+    std::string contaDestino;
+
+    std::string registro;
+    if (descricao == TRANSFERENCIA) {
+      contaDestino = transacao.contaDestino;
+      std::string delimiter = ";";
+      registro = ID_T+delimiter+numeroConta+delimiter+data+delimiter+std::to_string(valor)+delimiter+descricao+delimiter+contaDestino;
+    } else {
+      std::string delimiter = ";";
+      registro = ID_T+delimiter+numeroConta+delimiter+data+delimiter+std::to_string(valor)+delimiter+descricao;
+    }
+        
+    file << registro << std::endl;
+    file.close();
+  }
+
   
 protected:
   double saldo;
   std::string numeroConta;
+  std::string chavePix;
   Pessoa* correntista;
   vector<Transacao> listaDeTransacoes;
 };

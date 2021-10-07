@@ -112,17 +112,17 @@ public:
     return listaContas[index];
   }
 
-  void atualizarConta(std::string numeroConta, std::string email) {
+  void atualizarConta(std::string numeroConta, std::string chavePix) {
     if (contaExiste(numeroConta) == false) throw ContaNaoExiste();
-    if (correntistaExiste(email) == false) throw CorrentistaNaoExiste();
 
-    for(int i=0; i < listaCorrentistas.size(); i++) {
-      if (listaCorrentistas[i]->getEmail() == email) {
-        listaCorrentistas[i]->setEmail(email);
+    for(int i=0; i < listaContas.size(); i++) {
+      if (listaContas[i]->getNumeroConta() == numeroConta) {
+        listaContas[i]->setChavePix(chavePix);
         break;
       }
     }
 
+    atualizarRegistros();
   }
 
   void removerConta(std::string numeroConta) {
@@ -152,6 +152,30 @@ public:
     remove(FILE_PATH);
     rename(TEMP_FILE_PATH, FILE_PATH);
     listaContas.erase(listaContas.begin() + index);
+  }
+
+  void atualizarRegistros() {
+    std::ifstream file(FILE_PATH);
+    std::ofstream tempFile(TEMP_FILE_PATH);
+
+    std::string output;
+
+    for(int i=0; i < listaCorrentistas.size(); i++) {
+      tempFile <<listaCorrentistas[i]->getLineFormat() << std::endl;
+    }
+
+    for(int i=0; i < listaContas.size(); i++) {
+      tempFile <<listaContas[i]->getLineFormat() << std::endl;
+    }
+
+    for(int i=0; i < listaContas.size(); i++) {
+      listaContas[i]->registrarTransacoes(&tempFile);
+    }
+
+    file.close();
+    tempFile.close();
+    remove(FILE_PATH);
+    rename(TEMP_FILE_PATH, FILE_PATH);
   }
 
   bool contaExiste(std::string numeroConta) {
@@ -296,6 +320,7 @@ private:
       std::string tipoDado;
       std::string tipoConta;
       std::string nomeCorrentista;
+      std::string chavePix;
       double saldo;
       int limite;
       std::string aniversarioConta;
@@ -326,18 +351,22 @@ private:
         saldo = std::stod(output.substr(0, end).c_str());
         output.erase(0, end+1);
 
+        end = output.find(delimiter);
+        chavePix = output.substr(0, end);
+        output.erase(0, end+1);
+
         if (tipoConta == ID_CCL) {
           end = output.find(delimiter);
           limite = std::stoi(output.substr(0, end).c_str());
           output.erase(0, end+1);
-          listaContas.push_back(new ContaCorrenteLimite(correntista, numeroConta, saldo, limite));
+          listaContas.push_back(new ContaCorrenteLimite(correntista, numeroConta, saldo, chavePix, limite));
         } else if (tipoConta == ID_CP) {
           end = output.find(delimiter);
           aniversarioConta = output.substr(0, end);
           output.erase(0, end+1);
-          listaContas.push_back(new ContaPoupanca(correntista, numeroConta, saldo, aniversarioConta));
+          listaContas.push_back(new ContaPoupanca(correntista, numeroConta, saldo, chavePix, aniversarioConta));
         } else if (tipoConta == ID_CC) {
-          listaContas.push_back(new ContaCorrente(correntista, numeroConta, saldo));
+          listaContas.push_back(new ContaCorrente(correntista, numeroConta, saldo, chavePix));
 
         }
       }

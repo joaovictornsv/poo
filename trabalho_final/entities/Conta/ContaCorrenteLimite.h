@@ -9,14 +9,16 @@
 class ContaCorrenteLimite: public Conta
 {
 public:
-  ContaCorrenteLimite(Pessoa* _correntista, std::string _numeroConta, double _saldo, double _limite)
-  : Conta(_correntista, _numeroConta, _saldo) {
+  ContaCorrenteLimite(Pessoa* _correntista, std::string _numeroConta, double _saldo, std::string _chavePix, double _limite)
+  : Conta(_correntista, _numeroConta, _saldo, _chavePix) {
     limite = _limite;
   }
 
   // Depósito
-  virtual void operator<<(double valor) {      
+  virtual void operator<<(double valor) {    
+      deletar();  
       saldo += valor;
+      registrar();
 
       Transacao transacao;
       transacao.valor = valor;
@@ -28,6 +30,8 @@ public:
 
       transacao.data = date_time;
       listaDeTransacoes.push_back(transacao);
+
+      registrarTransacao(transacao);
       std::cout << "Deposito de R$" << valor << " realizado." << std::endl;
 
   }
@@ -35,9 +39,10 @@ public:
   // Retirada
   virtual void operator>>(double valor) {
     if ((saldo - valor) < (limite * -1)) throw ExcedeLimite();
+    deletar();
 
     saldo -= valor;
-
+    registrar();
     Transacao transacao;
 
     transacao.valor = valor;
@@ -50,6 +55,9 @@ public:
     transacao.data = date_time;
     listaDeTransacoes.push_back(transacao);
 
+
+    registrarTransacao(transacao);
+
     std::cout << "Saque de R$" << valor << " realizado." << std::endl;
   }
 
@@ -57,8 +65,10 @@ public:
   virtual void transferir(double valor, Conta* conta) {
     if ((saldo - valor) < (limite * -1)) throw ExcedeLimite();
 
+    deletar();
     *conta << valor;
     saldo -= valor;
+    registrar();
 
     Transacao transacao;
 
@@ -72,6 +82,8 @@ public:
     transacao.data = date_time;
     listaDeTransacoes.push_back(transacao);
 
+    registrarTransacao(transacao);
+
     std::cout << "Transferencia de R$" << valor << " realizado para a conta " << conta->getNumeroConta() << std::endl;
   }
 
@@ -81,6 +93,7 @@ public:
     std::cout << "Numero da conta: " << numeroConta << std::endl;
     std::cout << "Nome do cliente: " << correntista->getNome() << std::endl;
     std::cout << "Saldo: " << saldo << std::endl;
+    std::cout << "Chave PIX: " << chavePix << std::endl;
     std::cout << "Limite: " << limite << std::endl;
     std::cout << "============================================" << std::endl;
   }
@@ -89,6 +102,7 @@ public:
     std::cout << "Tipo de conta: Corrente com Limite" << std::endl;
     std::cout << "Numero da conta: " << numeroConta << std::endl;
     std::cout << "Nome do cliente: " << correntista->getNome() << std::endl;
+    std::cout << "Chave PIX: " << chavePix << std::endl;
   }
 
   virtual void extrato() {
@@ -97,6 +111,7 @@ public:
     std::cout << "Numero da conta: " << numeroConta << std::endl;
     std::cout << "Nome do cliente: " << correntista->getNome() << std::endl;
     std::cout << "Saldo: " << saldo << std::endl;
+    std::cout << "Chave PIX: " << chavePix << std::endl;
     std::cout << "Limite: " << limite << std::endl;
     std::cout << "---------------- Transacoes ----------------" << std::endl;
     int limite = listaDeTransacoes.size() <= 30 ? listaDeTransacoes.size() : 30;
@@ -118,17 +133,32 @@ public:
     std::fstream file(FILE_PATH, std::ios::out | std::ios::in | std::ios::app);
 
     std::string delimiter = ";";
-    std::string data = ID_C+delimiter+ID_CCL+delimiter+getCorrentista()->getNome()+delimiter+getNumeroConta()+delimiter+std::to_string(getSaldo())+
-    delimiter+std::to_string(limite);
+    std::string data = ID_C+delimiter+ID_CCL+delimiter+getCorrentista()->getNome()+delimiter+getNumeroConta()+delimiter+std::to_string(getSaldo())+delimiter+chavePix+delimiter+std::to_string(limite);
     
     file << data << std::endl;
   }
 
   virtual std::string getLineFormat() {
     std::string delimiter = ";";
-    std::string data = ID_C+delimiter+ID_CCL+delimiter+getCorrentista()->getNome()+delimiter+getNumeroConta()+delimiter+std::to_string(getSaldo())+
-    delimiter+std::to_string(limite);
+    std::string data = ID_C+delimiter+ID_CCL+delimiter+getCorrentista()->getNome()+delimiter+getNumeroConta()+delimiter+std::to_string(getSaldo())+delimiter+chavePix+delimiter+std::to_string(limite);
     return data;
+  }
+
+  virtual void deletar() {
+    std::ifstream file(FILE_PATH);
+    std::ofstream tempFile(TEMP_FILE_PATH);
+
+    std::string output;
+    while (std::getline (file, output)) {
+      if (output != getLineFormat()) {
+        tempFile << output << std::endl;
+      }
+    }
+
+    file.close();
+    tempFile.close();
+    remove(FILE_PATH);
+    rename(TEMP_FILE_PATH, FILE_PATH);
   }
 
 private:

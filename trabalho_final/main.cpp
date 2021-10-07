@@ -26,12 +26,17 @@ int main() {
 
   // banco.consultarConta("421412");
 
-  PessoaFisica pf("Joao Victor", "joao@email.com", "706.083.0440-84");
-  ContaCorrente cc(&pf, "123", 0);
+  // PessoaFisica pf("Joao Victor", "joao@email.com", "706.083.0440-84");
+  // ContaCorrente cc(&pf, "123", 0, "joao@email.com");
 
-  banco.cadastrarConta(&cc);
-  banco.removerConta("321");
-  banco.listarContas();
+  // banco.cadastrarConta(&cc);
+  // banco.removerConta("321");
+  // banco.listarContas();
+
+  banco.atualizarConta("123", "minhnovachave");
+
+  // *(conta) << 100;
+  // *(conta) >> 50;
 
   // ContaCorrenteLimite ccl(&pj, "432", 0, 100);
 

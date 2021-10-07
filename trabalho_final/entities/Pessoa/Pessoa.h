@@ -24,6 +24,7 @@ public:
   std::string getNome() { return this->nome; }
   std::string getEmail() { return this->email; }
   void setEmail(std::string email) { this->email = email; }
+  virtual std::string getLineFormat() = 0;
 
   virtual void registrar() = 0;
 
