@@ -6,7 +6,7 @@
 class CorrentistaJaExiste : public std::runtime_error
 {
 public:
-  CorrentistaJaExiste(const char *e="Operação inválida. Correntista já cadastrado"): runtime_error(e) {}
+  CorrentistaJaExiste(const char *e="Correntista já cadastrado"): runtime_error(e) {}
 };
 
 #endif

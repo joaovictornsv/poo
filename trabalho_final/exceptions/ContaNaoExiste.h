@@ -6,7 +6,7 @@
 class ContaNaoExiste : public std::runtime_error
 {
 public:
-  ContaNaoExiste(const char *e="Operação inválida. Não existe uma conta com esse número"): runtime_error(e) {}
+  ContaNaoExiste(const char *e="Não existe uma conta com esse número"): runtime_error(e) {}
 };
 
 #endif

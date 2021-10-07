@@ -16,49 +16,56 @@
 #include "./exceptions/ExcedeLimite.h"
 #include "./exceptions/SaldoInsuficiente.h"
 #include "./exceptions/ExceptionCatch.h"
+#include "./exceptions/PrecisaSerString.h"
+#include "./exceptions/PrecisaSerNumero.h"
+#include "./exceptions/OpcaoInvalida.h"
+
+#include "./validation/isNumber.h"
+#include "./validation/isString.h"
+
+#include "./menus/menus.h"
 
 #include <fstream>
+
+void lerLinha(std::string *s) {
+  std::fflush(stdin);
+  std::getline(std::cin, *s);
+}
 
 int main() {
   Banco banco("Banco Azul", "banco@email.com", "40.332.583/0001-72");
 
-  banco.listarContas();
+  
+  while(true) {
+    menuVisaoInicial();
+    std::string escolha;
+    std::cin >> escolha;
+    try {
+      if (!isNumber(escolha)) throw PrecisaSerNumero();
+      
+        if (escolha == "0") {
+          
+          break;
+        } else
 
-  // banco.consultarConta("421412");
+        if (escolha == "1") {
+          std::cout << "Visao Cliente\n";
+          break;
+        } else
 
-  // PessoaFisica pf("Joao Victor Silva", "joao@email.com", "706.083.0440-84");
-  std::cout << banco.gerarNumeroConta() << std::endl;
-  // ContaCorrente cc(&pf, "123", 0, "joao@email.com");
+        if (escolha == "2") {
+          std::cout << "Até mais!" << std::endl;
+          exit(0);
+        } else{ throw OpcaoInvalida(); }
 
-  // banco.cadastrarConta(&cc);
-  // banco.removerConta("321");
-  // banco.listarContas();
-
-  // Conta* conta=banco.getConta("123");
-
-  // *(conta) << 100;
-  // banco.atualizarConta("123", "chavemelhor");
-
-  // *(conta) >> 50;
-
-  // ContaCorrenteLimite ccl(&pj, "432", 0, 100);
-
-  // try {
-  //   cc << 100;
-  //   ccl << 100;
-
-  //   cc.transferir(10, &ccl);
-  //   ccl.transferir(90, &cc);
+    } catch(std::runtime_error &e) {
+      ExceptionCatch(e);
+    }
     
-  //   ccl.transferir(90, &cc);
-  //   // cc.transferir(900, &ccl);
 
-  //   cc.info();
-  //   ccl.info();
+  }
 
-  // } catch (std::runtime_error &e) {
-  //   ExceptionCatch(e);
-  // }
+  
 
   return 0;
 }

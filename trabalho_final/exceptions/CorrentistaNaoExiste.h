@@ -6,7 +6,7 @@
 class CorrentistaNaoExiste : public std::runtime_error
 {
 public:
-  CorrentistaNaoExiste(const char *e="Operação inválida. Correntista não encontrado, tente cadastrar um novo"): runtime_error(e) {}
+  CorrentistaNaoExiste(const char *e="Correntista não encontrado, tente cadastrar um novo"): runtime_error(e) {}
 };
 
 #endif

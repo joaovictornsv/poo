@@ -6,7 +6,7 @@
 class ContaJaExiste : public std::runtime_error
 {
 public:
-  ContaJaExiste(const char *e="Operação inválida. Já existe uma conta com esse número"): runtime_error(e) {}
+  ContaJaExiste(const char *e="Já existe uma conta com esse número"): runtime_error(e) {}
 };
 
 #endif

@@ -6,7 +6,7 @@
 class ExcedeLimite : public std::runtime_error
 {
 public:
-  ExcedeLimite(const char *e="Operação inválida. Limite da conta excedido"): runtime_error(e) {}
+  ExcedeLimite(const char *e="Limite da conta excedido"): runtime_error(e) {}
 };
 
 #endif
