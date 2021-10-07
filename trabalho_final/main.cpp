@@ -26,17 +26,18 @@ int main() {
 
   // banco.consultarConta("421412");
 
-  // PessoaFisica pf("Joao Victor", "joao@email.com", "706.083.0440-84");
+  // PessoaFisica pf("Joao Victor Silva", "joao@email.com", "706.083.0440-84");
+  std::cout << banco.gerarNumeroConta() << std::endl;
   // ContaCorrente cc(&pf, "123", 0, "joao@email.com");
 
   // banco.cadastrarConta(&cc);
   // banco.removerConta("321");
   // banco.listarContas();
 
-  Conta* conta=banco.getConta("123");
+  // Conta* conta=banco.getConta("123");
 
   // *(conta) << 100;
-  banco.atualizarConta("123", "chavemelhor");
+  // banco.atualizarConta("123", "chavemelhor");
 
   // *(conta) >> 50;
 

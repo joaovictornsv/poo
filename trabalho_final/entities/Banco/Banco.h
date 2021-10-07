@@ -14,6 +14,7 @@
 #include "../../exceptions/ContaNaoExiste.h"
 #include "../../exceptions/ContaJaExiste.h"
 #include "../../exceptions/CorrentistaNaoExiste.h"
+#include "../../exceptions/CorrentistaJaExiste.h"
 
 #include <vector>
 using std::vector;
@@ -84,6 +85,22 @@ public:
     listaCorrentistas.push_back(c->getCorrentista());
   }
 
+  void cadastrarPessoaFisica(PessoaFisica* p) {
+    if (correntistaExiste(p->getNome()) == true) throw CorrentistaJaExiste();
+
+    p->registrar();
+
+    listaCorrentistas.push_back(p);
+  }
+
+  void cadastrarPessoaJuridica(PessoaJuridica* p) {
+    if (correntistaExiste(p->getNome()) == true) throw CorrentistaJaExiste();
+
+    p->registrar();
+
+    listaCorrentistas.push_back(p);
+  }
+
   void consultarConta(std::string numeroConta) {
     if (contaExiste(numeroConta) == false) throw ContaNaoExiste();
 
@@ -96,6 +113,29 @@ public:
     }
 
     listaContas[index]->extrato();
+  }
+
+  std::string gerarNumeroConta() {
+    time_t now = time(0);
+
+    std::string numero = "N";
+
+    struct tm *date_time = localtime(&now);
+    int dia = date_time->tm_mday;
+    int mes = date_time->tm_mon + 1;
+    int ano = date_time->tm_year + 1900;
+    int hora = date_time->tm_hour;
+    int minuto = date_time->tm_min;
+    int segundo = date_time->tm_sec;
+
+    numero += std::to_string(ano);
+    numero += std::to_string(mes);
+    numero += std::to_string(dia);
+    numero += std::to_string(hora);
+    numero += std::to_string(minuto);
+    numero += std::to_string(segundo);
+
+    return numero;
   }
 
   Conta* getConta(std::string numeroConta) {
