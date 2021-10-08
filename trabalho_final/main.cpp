@@ -30,6 +30,7 @@
 void lerLinha(std::string *s) {
   std::fflush(stdin);
   std::getline(std::cin, *s);
+  std::getline(std::cin, *s);
 }
 
 int main() {
@@ -60,7 +61,8 @@ int main() {
                 std::string nomeCliente;
                 Pessoa* correntista;
 
-                while (true) {
+                bool cadastrouPessoa = false;
+                while (!cadastrouPessoa) {
                   menuCadastrarConta();
                   std::string escolhaCadastrarConta;
                   std::cin >> escolhaCadastrarConta;
@@ -70,7 +72,7 @@ int main() {
                     // CADASTRAR CLIENTE
                     if (escolhaCadastrarConta == "0") {
                       // CADASTRAR PESSOA FISICA
-                      while (true) {
+                      while (!cadastrouPessoa) {
                         menuCriarCliente();
                         std::string escolhaCriarCliente;
                         std::cin >> escolhaCriarCliente;
@@ -97,6 +99,8 @@ int main() {
                             stpcpy(&nomeCliente[0], &nome[0]);
                             correntista = &pf;
                             std::cout << "Cadastro feito!" << std::endl;
+                            cadastrouPessoa = true;
+                            break;
                           } else
 
                           // PESSOA JURIDICA
@@ -119,6 +123,8 @@ int main() {
                             stpcpy(&nomeCliente[0], &nome[0]);
                             correntista = &pj;
                             std::cout << "Cadastro feito!" << std::endl;
+                            cadastrouPessoa = true;
+                            break;
 
                           } else{ throw OpcaoInvalida(); }
                         } catch(std::runtime_error &e) {
@@ -135,6 +141,8 @@ int main() {
                         lerLinha(&nomeCliente);
                         try {
                           correntista = banco.getCorrentista(nomeCliente);
+                          cadastrouPessoa = true;
+                          break;
                         } catch(std::runtime_error &e) {
                           ExceptionCatch(e);
                         }
@@ -147,7 +155,8 @@ int main() {
                 }
 
                 // CRIACAO DA CONTA
-                while(true) {
+                bool cadastrouConta = false;
+                while(!cadastrouConta) {
                   menuTipoDeConta();
                   std::string escolhaTipoDeConta;
                   std::cin >> escolhaTipoDeConta;
@@ -157,42 +166,55 @@ int main() {
                     std::string chavePix;
                     double saldo = 0;
 
-                    std::cout << "Escolha sua chave PIX: ";
-                    std::cin >> chavePix;
-
                     if (escolhaTipoDeConta == "0") {
-                      ContaCorrente cc(correntista, numeroConta, saldo, chavePix);
+                      std::cout << "Escolha sua chave PIX: ";
+                      std::cin >> chavePix;
+                      ContaCorrente *cc = new ContaCorrente(correntista, numeroConta, saldo, chavePix);
 
-                      banco.cadastrarConta(&cc);
+                      banco.cadastrarConta(cc);
                       Conta* c = banco.getConta(numeroConta);
 
                       std::cout << "Conta criada!" << std::endl;
+                      cadastrouConta = true;
+                      break;
                       c->info();
 
                     } else
                     if (escolhaTipoDeConta == "1") {
+                      std::cout << "Escolha sua chave PIX: ";
+                      std::cin >> chavePix;
                       double limite;
                       std::cout << "Limite da conta: ";
                       std::cin >> limite;
 
-                      ContaCorrenteLimite ccl(correntista, numeroConta, saldo, chavePix, limite);
 
-                      banco.cadastrarConta(&ccl);
+                      ContaCorrenteLimite* ccl = new ContaCorrenteLimite(correntista, numeroConta, saldo, chavePix, limite);
+
+                      banco.cadastrarConta(ccl);
+
                       Conta* c = banco.getConta(numeroConta);
 
                       std::cout << "Conta criada!" << std::endl;
+                      cadastrouConta = true;
+                      break;
                       c->info();
 
                     } else 
                     if (escolhaTipoDeConta == "2") {
+                      std::cout << "Escolha sua chave PIX: ";
+                      std::cin >> chavePix;
                       time_t now = time(0);
                       std::string date_time = ctime(&now);
-                      ContaPoupanca cp(correntista, numeroConta, saldo, chavePix, date_time);
+                      date_time.replace(date_time.find("\n"), 1, "");
+                      ContaPoupanca *cp = new ContaPoupanca(correntista, numeroConta, saldo, chavePix, date_time);
 
-                      banco.cadastrarConta(&cp);
+
+                      banco.cadastrarConta(cp);
                       Conta* c = banco.getConta(numeroConta);
 
                       std::cout << "Conta criada!" << std::endl;
+                      cadastrouConta = true;
+                      break;
                       c->info();
 
                     } else{ throw OpcaoInvalida(); }

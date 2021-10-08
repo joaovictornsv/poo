@@ -57,7 +57,7 @@ void menuTipoDeConta() {
   std::cout << "Escolha que tipo de conta deseja abrir:" << std::endl;
   std::cout << "[0] Conta Corrente Comum" << std::endl;
   std::cout << "[1] Conta Corrente como Limite" << std::endl;
-  std::cout << "[3] Conta Poupanca" << std::endl;
+  std::cout << "[2] Conta Poupanca" << std::endl;
   std::cout << "------------------------------------" << std::endl;
   std::cout << "Sua opcao: ";
 }

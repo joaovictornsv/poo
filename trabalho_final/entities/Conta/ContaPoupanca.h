@@ -129,14 +129,14 @@ public:
     std::fstream file(FILE_PATH, std::ios::out | std::ios::in | std::ios::app);
 
     std::string delimiter = ";";
-    std::string data = ID_C+delimiter+ID_CCL+delimiter+getCorrentista()->getNome()+delimiter+getNumeroConta()+delimiter+std::to_string(getSaldo())+delimiter+chavePix+delimiter+aniversarioConta;
+    std::string data = ID_C+delimiter+ID_CP+delimiter+getCorrentista()->getNome()+delimiter+getNumeroConta()+delimiter+std::to_string(getSaldo())+delimiter+chavePix+delimiter+aniversarioConta;
 
     file << data << std::endl;
   }
 
   virtual std::string getLineFormat() {
     std::string delimiter = ";";
-    std::string data = ID_C+delimiter+ID_CCL+delimiter+getCorrentista()->getNome()+delimiter+getNumeroConta()+delimiter+std::to_string(getSaldo())+delimiter+chavePix+delimiter+aniversarioConta;
+    std::string data = ID_C+delimiter+ID_CP+delimiter+getCorrentista()->getNome()+delimiter+getNumeroConta()+delimiter+std::to_string(getSaldo())+delimiter+chavePix+delimiter+aniversarioConta;
     return data;
   }
 

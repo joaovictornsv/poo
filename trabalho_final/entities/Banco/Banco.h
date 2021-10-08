@@ -78,9 +78,7 @@ public:
   void cadastrarConta(Conta* c) {
     if (contaExiste(c->getNumeroConta()) == true) throw ContaJaExiste();
 
-    c->registrar();
-    c->getCorrentista()->registrar();
-
+    c->registrar();    
     listaContas.push_back(c);
     listaCorrentistas.push_back(c->getCorrentista());
   }
@@ -241,6 +239,7 @@ public:
   }
 
   Pessoa* getCorrentista(std::string nome) {
+    if (!correntistaExiste(nome)) throw CorrentistaNaoExiste();
     for(int i=0; i < listaCorrentistas.size(); i++) {
       if (listaCorrentistas[i]->getNome() == nome) {
         return listaCorrentistas[i];
