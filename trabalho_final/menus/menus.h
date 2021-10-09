@@ -24,6 +24,7 @@ void menuVisaoGerente() {
   std::cout << "[3] Fechar conta" << std::endl;
   std::cout << "[4] Listar contas" << std::endl;
   std::cout << "[5] Listar contas de cliente" << std::endl;
+  std::cout << "[6] Voltar ao menu inicial" << std::endl;
   std::cout << "====================================" << std::endl;
   std::cout << "Sua opcao: ";
 }
@@ -92,14 +93,14 @@ void menuFecharConta() {
 }
 
 void menuListarContasCliente() {
-  std::cout << "------------------------------------" << std::endl;
-  std::cout << "      Listar contas do cliente      " << std::endl;
-  std::cout << "------------------------------------" << std::endl;
+  std::cout << "------------------------------------------" << std::endl;
+  std::cout << "         Listar contas do cliente         " << std::endl;
+  std::cout << "------------------------------------------" << std::endl;
   std::cout << "Nome do cliente: ";
 }
 
 void menuListarContas() {
-  std::cout << "------------------------------------" << std::endl;
-  std::cout << "             Listar contas          " << std::endl;
-  std::cout << "------------------------------------" << std::endl;
+  std::cout << "------------------------------------------" << std::endl;
+  std::cout << "              Listar contas               " << std::endl;
+  std::cout << "------------------------------------------" << std::endl;
 }

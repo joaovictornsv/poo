@@ -242,19 +242,32 @@ int main() {
               
               // LISTAR CONTAS
               if (escolhaVisaoGerente == "4") {
-
+                menuListarContas();
+                banco.listarContas();
+                std::string pressToExit;
+                std::cout << "Pressione qualquer tecla pra voltar ao menu:";
+                 lerLinha(&pressToExit);
               } else
 
               // LISTAR CONTAS DO CLIENTE
               if (escolhaVisaoGerente == "5") {
-
+                menuListarContasCliente();
+                std::string nomeCorrentista;
+                lerLinha(&nomeCorrentista);
+                banco.listarContasCorrentista(nomeCorrentista);
+                std::string pressToExit;
+                std::cout << "Pressione qualquer tecla pra voltar ao menu:";
+                lerLinha(&pressToExit);
+              } else 
+              
+              if (escolhaVisaoGerente == "6") {
+                break;
               } else{ throw OpcaoInvalida(); }
             } catch(std::runtime_error &e) {
               ExceptionCatch(e);
             }
           }
 
-          break;
         } else
 
         if (escolha == "1") {
