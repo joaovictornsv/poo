@@ -34,18 +34,24 @@ void menuVisaoGerente() {
   std::cout << "Sua opcao: ";
 }
 
+void menuEntrarComConta() {
+  std::cout << "------------------------------------" << std::endl;
+  std::cout << "              Cliente               " << std::endl;
+  std::cout << "------------------------------------" << std::endl;
+  std::cout << "Insira o numero da sua conta: ";
+}
+
 void menuVisaoCliente() {
   std::cout << "====================================" << std::endl;
   std::cout << "              Cliente               " << std::endl;
   std::cout << "====================================" << std::endl;
   std::cout << "Escolha como deseja prosseguir:" << std::endl;
-  std::cout << "[0] Cadastrar nova conta" << std::endl;
-  std::cout << "[1] Consultar conta" << std::endl;
-  std::cout << "[2] Atualizar conta" << std::endl;
-  std::cout << "[3] Fechar conta" << std::endl;
-  std::cout << "[4] Listar contas" << std::endl;
-  std::cout << "[5] Listar contas de cliente" << std::endl;
-  std::cout << "[6] Voltar ao menu inicial" << std::endl;
+  std::cout << "[0] Deposito" << std::endl;
+  std::cout << "[1] Saque" << std::endl;
+  std::cout << "[2] Transferencia" << std::endl;
+  std::cout << "[3] Extrato" << std::endl;
+  std::cout << "[4] Saldo" << std::endl;
+  std::cout << "[5] Voltar ao menu inicial" << std::endl;
   std::cout << "====================================" << std::endl;
   std::cout << "Sua opcao: ";
 }
@@ -89,6 +95,40 @@ void menuUsarCliente() {
   std::cout << "       Usar cliente existente       " << std::endl;
   std::cout << "------------------------------------" << std::endl;
   std::cout << "Nome do cliente: ";
+}
+
+void menuDeposito() {
+  std::cout << "------------------------------------" << std::endl;
+  std::cout << "             Deposito               " << std::endl;
+  std::cout << "------------------------------------" << std::endl;
+  std::cout << "Valor do deposito: ";
+}
+
+void menuSaque() {
+  std::cout << "------------------------------------" << std::endl;
+  std::cout << "               Saque                " << std::endl;
+  std::cout << "------------------------------------" << std::endl;
+  std::cout << "Valor do saque: ";
+}
+
+void menuTransferencia() {
+  std::cout << "------------------------------------" << std::endl;
+  std::cout << "           Transferencia            " << std::endl;
+  std::cout << "------------------------------------" << std::endl;
+  std::cout << "Numero da conta destino: ";
+}
+
+void menuExtrato() {
+  std::cout << "------------------------------------" << std::endl;
+  std::cout << "              Extrato               " << std::endl;
+  std::cout << "------------------------------------" << std::endl;
+}
+
+void menuSaldo() {
+  std::cout << "------------------------------------" << std::endl;
+  std::cout << "              Saldo                 " << std::endl;
+  std::cout << "------------------------------------" << std::endl;
+  std::cout << "Seu saldo eh: R$";
 }
 
 void menuConsultarConta() {
