@@ -275,6 +275,7 @@ void visaoGerente(Banco* banco) {
         lerLinha(&pressToExit);
       } else 
       
+      // VOLTAR AO MENU INICIAL
       if (escolhaVisaoGerente == "6") {
         break;
       } else{ throw OpcaoInvalida(); }
