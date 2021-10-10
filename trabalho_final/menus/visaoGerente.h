@@ -205,13 +205,20 @@ void visaoGerente(Banco* banco) {
 
       // CONSULTAR CONTA
       if (escolhaVisaoGerente == "1") {
-        menuConsultarConta();
-        std::string numeroConta;
-        std::cin >> numeroConta;
-        banco->consultarConta(numeroConta);
-        std::string pressToExit;
-        std::cout << "Pressione qualquer tecla pra voltar ao menu:";
-        lerLinha(&pressToExit);
+        while(true) {
+          try {
+            menuConsultarConta();
+            std::string numeroConta;
+            std::cin >> numeroConta;
+            banco->consultarConta(numeroConta);
+            std::string pressToExit;
+            std::cout << "Pressione qualquer tecla pra voltar ao menu:";
+            lerLinha(&pressToExit);
+            break;
+          } catch(std::runtime_error &e) {
+            ExceptionCatch(e);
+          }
+        }
 
       } else
 
