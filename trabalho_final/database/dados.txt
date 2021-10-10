@@ -11,3 +11,5 @@ P;PF;Pedro Silva;pedrinho@gmail.com;903121
 C;CP;Pedro Silva;N2021108211631;0.000000;oioioi;Fri Oct  8 21:16:34 2021
 P;PJ;Miguel;miguel@outlook.com;423423
 C;CCL;Miguel;N202110821174;0.000000;7832;90.000000
+P;PF;Carlos;carlos@yahoo.com;493490
+C;CCL;Carlos;N2021109231415;0.000000;carlospix;900.000000

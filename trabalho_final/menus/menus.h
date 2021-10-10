@@ -12,10 +12,31 @@ void menuVisaoInicial() {
   std::cout << "====================================" << std::endl;
 }
 
+void lerLinha(std::string *s) {
+  std::fflush(stdin);
+  std::getline(std::cin, *s);
+  std::getline(std::cin, *s);
+}
 
 void menuVisaoGerente() {
   std::cout << "====================================" << std::endl;
   std::cout << "              Gerente               " << std::endl;
+  std::cout << "====================================" << std::endl;
+  std::cout << "Escolha como deseja prosseguir:" << std::endl;
+  std::cout << "[0] Cadastrar nova conta" << std::endl;
+  std::cout << "[1] Consultar conta" << std::endl;
+  std::cout << "[2] Atualizar conta" << std::endl;
+  std::cout << "[3] Fechar conta" << std::endl;
+  std::cout << "[4] Listar contas" << std::endl;
+  std::cout << "[5] Listar contas de cliente" << std::endl;
+  std::cout << "[6] Voltar ao menu inicial" << std::endl;
+  std::cout << "====================================" << std::endl;
+  std::cout << "Sua opcao: ";
+}
+
+void menuVisaoCliente() {
+  std::cout << "====================================" << std::endl;
+  std::cout << "              Cliente               " << std::endl;
   std::cout << "====================================" << std::endl;
   std::cout << "Escolha como deseja prosseguir:" << std::endl;
   std::cout << "[0] Cadastrar nova conta" << std::endl;
@@ -74,7 +95,7 @@ void menuConsultarConta() {
   std::cout << "------------------------------------" << std::endl;
   std::cout << "          Consultar conta           " << std::endl;
   std::cout << "------------------------------------" << std::endl;
-  std::cout << "Insira o numero da conta :";
+  std::cout << "Insira o numero da conta: ";
 }
 
 void menuAtualizarConta() {
@@ -82,14 +103,14 @@ void menuAtualizarConta() {
   std::cout << "          Atualizar conta           " << std::endl;
   std::cout << "------------------------------------" << std::endl;
   std::cout << "(Apenas a chave PIX pode ser atualizada)" << std::endl;
-  std::cout << "Insira o numero da conta :";
+  std::cout << "Insira o numero da conta: ";
 }
 
 void menuFecharConta() {
   std::cout << "------------------------------------" << std::endl;
   std::cout << "           Fechar conta             " << std::endl;
   std::cout << "------------------------------------" << std::endl;
-  std::cout << "Insira o numero da conta :";
+  std::cout << "Insira o numero da conta: ";
 }
 
 void menuListarContasCliente() {
