@@ -8,6 +8,7 @@ void menuVisaoInicial() {
   std::cout << "[1] Cliente" << std::endl;
   std::cout << "[2] Sair do programa" << std::endl;
   std::cout << "====================================" << std::endl;
+  std::cout << "Sua opcao: ";
 }
 
 void lerLinha(std::string *s) {

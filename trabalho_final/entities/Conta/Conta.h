@@ -117,6 +117,7 @@ public:
     file.close();
   }
 
+  vector<Transacao> getListaTransacoes() { return listaDeTransacoes; };
   
 protected:
   double saldo;

@@ -192,6 +192,21 @@ public:
     listaContas.erase(listaContas.begin() + index);
   }
 
+  void limparMemoria() {
+    for(int i=0; i < listaContas.size(); i++) {
+      listaContas[i]->getListaTransacoes().clear();
+      listaContas[i]->getListaTransacoes().shrink_to_fit();
+    }
+
+    for(int i=0; i < listaContas.size(); i++) {
+      delete listaContas[i];
+    }
+
+    for(int i=0; i < listaCorrentistas.size(); i++) {
+      delete listaCorrentistas[i];
+    }
+  }
+
   void atualizarRegistros() {
     std::ifstream file(FILE_PATH);
     std::ofstream tempFile(TEMP_FILE_PATH);

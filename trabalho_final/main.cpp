@@ -8,7 +8,7 @@
 
 
 int main() {
-  Banco banco("Banco Azul", "banco@email.com", "40.332.583/0001-72");
+  Banco* banco = new Banco("Banco Azul", "banco@email.com", "40.332.583/0001-72");
 
   
   while(true) {
@@ -22,7 +22,7 @@ int main() {
 
         // VISAO GERENTE
         if (escolha == "0") {
-          visaoGerente(&banco);
+          visaoGerente(banco);
         } else
 
         if (escolha == "1") {
@@ -35,9 +35,9 @@ int main() {
               if (numeroConta == "-1") {
                 break;
               } else {
-                Conta* conta = banco.getConta(numeroConta);
+                Conta* conta = banco->getConta(numeroConta);
 
-                visaoCliente(&banco, conta);
+                visaoCliente(banco, conta);
               } 
             } catch(std::runtime_error &e) {
               ExceptionCatch(e);
@@ -49,15 +49,16 @@ int main() {
 
         if (escolha == "2") {
           std::cout << "Até mais!" << std::endl;
-          exit(0);
+          break;
         } else{ throw OpcaoInvalida(); }
 
     } catch(std::runtime_error &e) {
       ExceptionCatch(e);
     }
-    
 
   }
 
+  banco->limparMemoria();
+  delete banco;
   return 0;
 }
