@@ -154,8 +154,8 @@ void visaoGerente(Banco* banco) {
 
               std::cout << "Conta criada!" << std::endl;
               cadastrouConta = true;
-              break;
               c->info();
+              break;
 
             } else
             if (escolhaTipoDeConta == "1") {
@@ -174,8 +174,8 @@ void visaoGerente(Banco* banco) {
 
               std::cout << "Conta criada!" << std::endl;
               cadastrouConta = true;
-              break;
               c->info();
+              break;
 
             } else 
             if (escolhaTipoDeConta == "2") {
@@ -192,8 +192,8 @@ void visaoGerente(Banco* banco) {
 
               std::cout << "Conta criada!" << std::endl;
               cadastrouConta = true;
-              break;
               c->info();
+              break;
 
             } else{ throw OpcaoInvalida(); }
 
