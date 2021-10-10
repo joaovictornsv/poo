@@ -16,8 +16,8 @@ bool isNumber(std::string valor) {
     }
 
     if(!valid) {
-      break;
       allValid = false;
+      break;
     }
   }
   return allValid;

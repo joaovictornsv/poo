@@ -111,7 +111,7 @@ public:
     std::cout << "Aniversario da conta: " << aniversarioConta << std::endl;
     std::cout << "---------------- Transacoes ----------------" << std::endl;
     int limite = listaDeTransacoes.size() <= 30 ? listaDeTransacoes.size() : 30;
-    for (int i = 0; i < limite; i++) {
+    for (int i = limite-1; i >= 0; i--) {
       std::cout << "Num.Transacao: " << i << std::endl;
       std::cout << "Descricao: " << listaDeTransacoes[i].descricao << std::endl;
       std::cout << "Valor: " << listaDeTransacoes[i].valor << std::endl;

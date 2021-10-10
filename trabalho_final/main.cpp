@@ -4,6 +4,7 @@
 #include "./exceptions/PrecisaSerNumero.h"
 #include "./exceptions/OpcaoInvalida.h"
 #include "./menus/visaoGerente.h"
+#include "./menus/visaoCliente.h"
 
 
 int main() {
@@ -25,12 +26,25 @@ int main() {
         } else
 
         if (escolha == "1") {
-          // menuVisaoCliente();
-          // std::string escolhaVisaoCliente;
-          // std::cin >> escolhaVisaoCliente;
-          // if (!isNumber(escolhaVisaoCliente)) throw PrecisaSerNumero();
+          while(true) { 
+            menuEntrarComConta();
+            std::string numeroConta;
+            std::cin >> numeroConta;
 
-          break;
+            try {
+              if (numeroConta == "-1") {
+                break;
+              } else {
+                Conta* conta = banco.getConta(numeroConta);
+
+                visaoCliente(&banco, conta);
+              } 
+            } catch(std::runtime_error &e) {
+              ExceptionCatch(e);
+            }
+          }
+
+
         } else
 
         if (escolha == "2") {

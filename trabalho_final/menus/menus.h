@@ -1,6 +1,4 @@
 #include <iostream>
-
-
 void menuVisaoInicial() {
   std::cout << "====================================" << std::endl;
   std::cout << "         Bem vindo ao JVBank        " << std::endl;
@@ -35,10 +33,10 @@ void menuVisaoGerente() {
 }
 
 void menuEntrarComConta() {
-  std::cout << "------------------------------------" << std::endl;
-  std::cout << "              Cliente               " << std::endl;
-  std::cout << "------------------------------------" << std::endl;
-  std::cout << "Insira o numero da sua conta: ";
+  std::cout << "----------------------------------------------------" << std::endl;
+  std::cout << "                      Cliente                       " << std::endl;
+  std::cout << "----------------------------------------------------" << std::endl;
+  std::cout << "Insira o numero da sua conta (-1 encerra): ";
 }
 
 void menuVisaoCliente() {
