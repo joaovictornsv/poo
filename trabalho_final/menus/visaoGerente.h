@@ -242,7 +242,17 @@ void visaoGerente(Banco* banco) {
 
       // FECHAR CONTA
       if (escolhaVisaoGerente == "3") {
-
+        while(true) {
+          try {
+            menuFecharConta();
+            std::string numeroConta;
+            std::cin >> numeroConta;
+            banco->removerConta(numeroConta);
+            break;
+          } catch(std::runtime_error &e) {
+            ExceptionCatch(e);
+          }
+        }
       } else              
       
       // LISTAR CONTAS
