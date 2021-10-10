@@ -224,7 +224,20 @@ void visaoGerente(Banco* banco) {
 
       // ATUALIZAR CONTA
       if (escolhaVisaoGerente == "2") {
-
+        while(true) {
+          try {
+            menuAtualizarConta();
+            std::string numeroConta;
+            std::cin >> numeroConta;
+            std::string chavePix;
+            std::cout << "Sua nova chave pix: ";
+            std::cin >> chavePix;
+            banco->atualizarConta(numeroConta, chavePix);
+            break;
+          } catch(std::runtime_error &e) {
+            ExceptionCatch(e);
+          }
+        }
       } else
 
       // FECHAR CONTA
