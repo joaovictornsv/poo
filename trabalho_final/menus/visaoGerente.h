@@ -151,6 +151,9 @@ void visaoGerente(Banco* banco) {
               std::cout << "Conta criada!" << std::endl;
               cadastrouConta = true;
               c->info();
+              std::string pressToExit;
+              std::cout << "Pressione qualquer tecla pra voltar ao menu:";
+              lerLinha(&pressToExit);
               break;
 
             } else
@@ -171,6 +174,9 @@ void visaoGerente(Banco* banco) {
               std::cout << "Conta criada!" << std::endl;
               cadastrouConta = true;
               c->info();
+              std::string pressToExit;
+              std::cout << "Pressione qualquer tecla pra voltar ao menu:";
+              lerLinha(&pressToExit);
               break;
 
             } else 
@@ -189,10 +195,12 @@ void visaoGerente(Banco* banco) {
               std::cout << "Conta criada!" << std::endl;
               cadastrouConta = true;
               c->info();
+              std::string pressToExit;
+              std::cout << "Pressione qualquer tecla pra voltar ao menu:";
+              lerLinha(&pressToExit);
               break;
 
             } else{ throw OpcaoInvalida(); }
-
           } catch(std::runtime_error &e) {
             ExceptionCatch(e);
           }

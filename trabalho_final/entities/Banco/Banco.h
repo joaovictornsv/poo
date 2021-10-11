@@ -80,7 +80,9 @@ public:
 
     c->registrar();    
     listaContas.push_back(c);
-    listaCorrentistas.push_back(c->getCorrentista());
+    if (correntistaExiste(c->getCorrentista()->getNome()) == false) {
+      listaCorrentistas.push_back(c->getCorrentista());
+    }
   }
 
   void cadastrarPessoa(Pessoa* p) {

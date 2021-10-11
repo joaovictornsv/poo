@@ -1,0 +1,11 @@
+P;PF;Alícia Antonella Louise Sales;aaliciaantonellalouisesales@davimil.com.br;54947722410
+P;PJ;Osvaldo e Diego Gráfica Ltda;financeiro@osvaldoediegograficaltda.com.br;94303202000156
+C;CCL;Alícia Antonella Louise Sales;N20211011114923;0.000000;54947722410;1000.000000
+C;CC;Osvaldo e Diego Gráfica Ltda;N20211011115124;0.000000;58046528
+C;CCL;Osvaldo e Diego Gráfica Ltda;N202110111210;0.000000;financeiro@osvaldoediegograficaltda.com.br;2000.000000
+T;N20211011114853;Mon Oct 11 12:01:34 2021;100.000000;Deposito
+T;N20211011114853;Mon Oct 11 12:01:48 2021;15.000000;Saque
+C;CP;Osvaldo e Diego Gráfica Ltda;N20211011115039;5.000000;83998109529;Mon Oct 11 11:50:51 2021
+T;N20211011115039;Mon Oct 11 12:02:35 2021;5.000000;Deposito
+C;CC;Alícia Antonella Louise Sales;N20211011114853;80.000000;128927707
+T;N20211011114853;Mon Oct 11 12:02:35 2021;5.000000;Transferencia;N20211011115039
