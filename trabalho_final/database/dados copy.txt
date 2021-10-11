@@ -1,0 +1,26 @@
+P;PF;João da Silva;joao@email.com;123
+P;PJ;Pedro da Silva;pedro@email.com;456
+P;PJ;José da Silva;jose@email.com;789
+P;PF;Joao Victor;joao@email.com;706.083.0440-84
+P;PF;Pedro Silva;pedrinho@gmail.com;903121
+P;PJ;Miguel;miguel@outlook.com;423423
+P;PF;Carlos;carlos@yahoo.com;493490
+C;CC;João da Silva;421412;40.210000;joao@email.com
+C;CCL;José da Silva;421;904.020000;jose@email.com;10.000000
+C;CC;Joao Victor;N2021108211549;0.000000;9999
+C;CCL;Miguel;N202110821174;0.000000;7832;90.000000
+C;CCL;Carlos;N2021109231415;0.000000;carlinhosppix;900.000000
+T;123;Thu Oct  7 07:55:51 2021;100.000000;Deposito
+T;123;Sun Oct 10 13:24:06 2021;90.000000;Deposito
+T;123;Sun Oct 10 13:24:46 2021;80.000000;Deposito
+T;123;Sun Oct 10 13:26:45 2021;100.000000;Saque
+T;123;Sun Oct 10 13:26:54 2021;70.000000;Saque
+T;123;Sun Oct 10 13:27:03 2021;10.000000;Deposito
+T;123;Sun Oct 10 13:27:15 2021;10.000000;Saque
+T;123;Sun Oct 10 13:27:35 2021;10.000000;Deposito
+T;123;Sun Oct 10 13:27:41 2021;5.000000;Saque
+T;N2021108211631;Sun Oct 10 13:35:29 2021;10.000000;Deposito
+C;CC;Joao Victor;123;95.000000;chavinha2
+T;123;Sun Oct 10 13:35:29 2021;10.000000;Transferencia;N2021108211631
+C;CP;Pedro Silva;N2021108211631;11.000000;xauxaxau;Fri Oct  8 21:16:34 2021
+T;N2021108211631;Sun Oct 10 13:47:49 2021;1.000000;Deposito

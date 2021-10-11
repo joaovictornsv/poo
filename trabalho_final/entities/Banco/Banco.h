@@ -83,7 +83,7 @@ public:
     listaCorrentistas.push_back(c->getCorrentista());
   }
 
-  void cadastrarPessoaFisica(PessoaFisica* p) {
+  void cadastrarPessoa(Pessoa* p) {
     if (correntistaExiste(p->getNome()) == true) throw CorrentistaJaExiste();
 
     p->registrar();
@@ -91,13 +91,6 @@ public:
     listaCorrentistas.push_back(p);
   }
 
-  void cadastrarPessoaJuridica(PessoaJuridica* p) {
-    if (correntistaExiste(p->getNome()) == true) throw CorrentistaJaExiste();
-
-    p->registrar();
-
-    listaCorrentistas.push_back(p);
-  }
 
   void consultarConta(std::string numeroConta) {
     if (contaExiste(numeroConta) == false) throw ContaNaoExiste();

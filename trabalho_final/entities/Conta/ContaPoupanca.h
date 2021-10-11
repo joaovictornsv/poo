@@ -88,7 +88,7 @@ public:
     std::cout << "Tipo de conta: Poupanca" << std::endl;
     std::cout << "Numero da conta: " << numeroConta << std::endl;
     std::cout << "Nome do cliente: " << correntista->getNome() << std::endl;
-    std::cout << "Saldo: " << saldo << std::endl;
+    std::cout << "Saldo: R$" << saldo << std::endl;
     std::cout << "Chave PIX: " << chavePix << std::endl;
     std::cout << "Aniversario da conta: " << aniversarioConta << std::endl;
     std::cout << "============================================" << std::endl;
@@ -106,7 +106,7 @@ public:
     std::cout << "Tipo de conta: Poupanca" << std::endl;
     std::cout << "Numero da conta: " << numeroConta << std::endl;
     std::cout << "Nome do cliente: " << correntista->getNome() << std::endl;
-    std::cout << "Saldo: " << saldo << std::endl;
+    std::cout << "Saldo: R$" << saldo << std::endl;
     std::cout << "Chave PIX: " << chavePix << std::endl;
     std::cout << "Aniversario da conta: " << aniversarioConta << std::endl;
     std::cout << "---------------- Transacoes ----------------" << std::endl;

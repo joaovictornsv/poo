@@ -71,11 +71,9 @@ void visaoGerente(Banco* banco) {
 
                     std::cout << "CPF (sem pontuacao): ";
                     std::cin >> cpf;
-                    PessoaFisica pf(nome, email, cpf);
+                    correntista = new PessoaFisica(nome, email, cpf);
 
-                    banco->cadastrarPessoaFisica(&pf);
-                    stpcpy(&nomeCliente[0], &nome[0]);
-                    correntista = &pf;
+                    banco->cadastrarPessoa(correntista);
                     std::cout << "Cadastro feito!" << std::endl;
                     cadastrouPessoa = true;
                     break;
@@ -95,11 +93,9 @@ void visaoGerente(Banco* banco) {
 
                     std::cout << "CNPJ (sem pontuacao): ";
                     std::cin >> cnpj;
-                    PessoaJuridica pj(nome, email, cnpj);
+                    correntista = new PessoaJuridica(nome, email, cnpj);
 
-                    banco->cadastrarPessoaJuridica(&pj);
-                    stpcpy(&nomeCliente[0], &nome[0]);
-                    correntista = &pj;
+                    banco->cadastrarPessoa(correntista);
                     std::cout << "Cadastro feito!" << std::endl;
                     cadastrouPessoa = true;
                     break;

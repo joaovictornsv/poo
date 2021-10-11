@@ -90,7 +90,7 @@ public:
     std::cout << "Tipo de conta: Corrente Comum" << std::endl;
     std::cout << "Numero da conta: " << numeroConta << std::endl;
     std::cout << "Nome do cliente: " << correntista->getNome() << std::endl;
-    std::cout << "Saldo: " << saldo << std::endl;
+    std::cout << "Saldo: R$" << saldo << std::endl;
     std::cout << "Chave PIX: " << chavePix << std::endl;
     std::cout << "============================================" << std::endl;
   }
@@ -107,7 +107,7 @@ public:
     std::cout << "Tipo de conta: Corrente Comum" << std::endl;
     std::cout << "Numero da conta: " << numeroConta << std::endl;
     std::cout << "Nome do cliente: " << correntista->getNome() << std::endl;
-    std::cout << "Saldo: " << saldo << std::endl;
+    std::cout << "Saldo: R$" << saldo << std::endl;
     std::cout << "Chave PIX: " << chavePix << std::endl;
     std::cout << "---------------- Transacoes ----------------" << std::endl;
 
